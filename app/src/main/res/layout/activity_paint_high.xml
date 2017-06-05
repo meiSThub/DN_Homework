@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#000"
+              android:orientation="vertical">
+
+    <com.mei.test.ui.paint.widget.LinearGradientTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="欢配置完毕后，就可以点击Generate按钮生成原型"
+        android:textColor="#666666"
+        android:textSize="30sp"/>
+</LinearLayout>
