@@ -17,7 +17,7 @@ import com.mei.test.utils.LogUtils;
 
 /**
  * Created by mei on 2017/5/21.
- * Description:
+ * Description: 画笔的基本使用，画小黄人
  */
 public class MinionView extends View {
     private static final int DEFAULT_SIZE = 200; //View默认大小

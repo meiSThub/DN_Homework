@@ -26,7 +26,7 @@ import com.mei.test.R;
 
 /**
  * Created by mei on 2017/6/1.
- * Description:
+ * Description: Shader练习
  */
 public class MyGradientView extends View {
 

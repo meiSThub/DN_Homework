@@ -14,7 +14,7 @@ import com.mei.test.utils.LogUtils;
 
 /**
  * Created by mei on 2017/5/28.
- * Description:
+ * Description:霓虹灯效果
  */
 public class LinearGradientTextView extends TextView {
     private TextPaint mPaint;
