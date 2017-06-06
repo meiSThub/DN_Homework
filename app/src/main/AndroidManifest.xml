@@ -50,6 +50,13 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+        <activity android:name=".ui.paint.RadarActivity">
+            <intent-filter>
+                <action android:name="action.ui.paint.RadarActivity"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

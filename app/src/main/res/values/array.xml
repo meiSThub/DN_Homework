@@ -3,6 +3,7 @@
     <string-array name="ListItem">
         <item>Paint基本使用;action.ui.activity.MinionActivity</item>
         <item>Paint高级渲染;action.ui.activity.paint.PaintHighActivity</item>
+        <item>Paint:雷达扫描;action.ui.paint.RadarActivity</item>
         <item>Path的setFillType方法的使用;action.ui.activity.path.PathActivity</item>
         <item>Path的op方法的使用;action.ui.activity.path.PathOpActivity</item>
         <item>SVG画可交互的台湾地图;action.ui.activity.svg.TaiWanMapActivity</item>
