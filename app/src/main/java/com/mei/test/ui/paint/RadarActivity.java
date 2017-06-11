@@ -6,7 +6,6 @@ import android.view.View;
 import com.mei.test.R;
 import com.mei.test.base.BaseActivity;
 import com.mei.test.ui.paint.widget.RadarView;
-import com.mei.test.ui.paint.widget.RadarView2;
 
 /**
  * Created by VST on 2017/6/6.
@@ -26,6 +25,11 @@ public class RadarActivity extends BaseActivity {
         setContentView(R.layout.activity_radar);
 
         mRadarView = (RadarView) findViewById(R.id.radarview);
+    }
+
+    @Override
+    public String getItemTitle() {
+        return "Paint:雷达扫描";
     }
 
     public void start(View view) {

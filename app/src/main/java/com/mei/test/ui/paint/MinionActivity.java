@@ -18,4 +18,9 @@ public class MinionActivity extends BaseActivity {
         MinionView view = new MinionView(this);
         setContentView(view);
     }
+
+    @Override
+    public String getItemTitle() {
+        return "Paint的基本使用";
+    }
 }

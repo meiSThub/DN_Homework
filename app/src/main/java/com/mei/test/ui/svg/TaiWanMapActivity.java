@@ -17,4 +17,9 @@ public class TaiWanMapActivity extends BaseActivity {
         TaiWanMapView mapView = new TaiWanMapView(this);
         setContentView(mapView);
     }
+
+    @Override
+    public String getItemTitle() {
+        return "SVG画可交互的台湾地图";
+    }
 }

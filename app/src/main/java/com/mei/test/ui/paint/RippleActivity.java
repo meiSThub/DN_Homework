@@ -1,25 +1,27 @@
-package com.mei.test.ui.path;
+package com.mei.test.ui.paint;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.mei.test.R;
 import com.mei.test.base.BaseActivity;
-import com.mei.test.ui.path.widget.PathOpView;
 
 /**
- * Created by mei on 2017/5/23.
- * Description:
+ * Created by mei on 2017/6/11.
+ * Description:水波纹按钮
  */
-public class PathOpActivity extends BaseActivity {
+public class RippleActivity extends BaseActivity {
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        PathOpView opView = new PathOpView(this);
-        setContentView(opView);
+        setContentView(R.layout.activity_ripple);
     }
 
     @Override
     public String getItemTitle() {
-        return "Path的op方法的使用";
+        return "水波纹按钮";
     }
+
+
 }

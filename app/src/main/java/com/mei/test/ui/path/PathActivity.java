@@ -17,4 +17,9 @@ public class PathActivity extends BaseActivity {
         PathFillView fillView = new PathFillView(this);
         setContentView(fillView);
     }
+
+    @Override
+    public String getItemTitle() {
+        return "Path的setFillType方法的使用";
+    }
 }
