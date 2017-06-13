@@ -72,6 +72,13 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+        <activity android:name=".ui.paint.InvertedImageActivity">
+            <intent-filter>
+                <action android:name="action.ui.paint.InvertedImageActivity"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
 
     </application>
 
