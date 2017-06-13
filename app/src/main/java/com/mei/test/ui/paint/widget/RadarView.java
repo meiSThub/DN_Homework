@@ -160,7 +160,7 @@ public class RadarView extends View {
         mMatrix.setRotate(mDegree, mCenterX, mCenterY);
         mGradient.setLocalMatrix(mMatrix);
         canvas.drawCircle(mCenterX, mCenterY, mRadarRadius - mLineWidth, mPaint);
-        canvas.restore();
+        //canvas.restore();
     }
 
     public void startScan() {
