@@ -79,6 +79,20 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+        <activity android:name=".ui.xfermode.XfermodeActivity">
+            <intent-filter>
+                <action android:name="action.ui.xfermode.XfermodeActivity"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.xfermode.SrcMainActivity">
+            <intent-filter>
+                <action android:name="action.ui.xfermode.SrcMainActivity"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
 
     </application>
 
