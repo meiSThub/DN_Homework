@@ -93,6 +93,13 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
+        <activity android:name=".ui.xfermode.DstMainActivity">
+            <intent-filter>
+                <action android:name="action.ui.xfermode.DstMainActivity"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
 
     </application>
 
