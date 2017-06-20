@@ -107,7 +107,9 @@
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
         </activity>
-
+        <activity android:name=".ui.paint.PaintMainActivity"/>
+        <activity android:name=".ui.path.PathMainActivity"/>
+        <activity android:name=".ui.xfermode.XfermodeMainActivity"/>
     </application>
 
 </manifest>

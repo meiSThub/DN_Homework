@@ -26,5 +26,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         mApplication.put(cl, getItemTitle());
     }
 
-    public abstract String getItemTitle();
+    public String getItemTitle() {
+        return null;
+    }
 }
