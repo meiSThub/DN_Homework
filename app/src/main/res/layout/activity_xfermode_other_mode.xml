@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="fill_parent"
+              android:layout_height="fill_parent"
+              android:orientation="vertical">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:stretchColumns="2">
+
+        <TableRow>
+
+            <Button
+                android:id="@+id/lightbookview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="书架"/>
+
+            <Button
+                android:id="@+id/twitterview"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="小鸟"/>
+
+        </TableRow>
+    </TableLayout>
+
+
+    <com.mei.test.ui.xfermode.widget.LightBookView_LIGHTEN
+        android:id="@+id/lightbookview_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"/>
+
+    <com.mei.test.ui.xfermode.widget.TwitterView_MULTIPLY
+        android:id="@+id/twitterview_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+</LinearLayout>

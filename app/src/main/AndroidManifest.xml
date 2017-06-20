@@ -3,11 +3,11 @@
           package="com.mei.test">
 
     <application
+        android:name=".DemoApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:name=".DemoApplication"
         android:theme="@style/AppTheme">
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -96,6 +96,13 @@
         <activity android:name=".ui.xfermode.DstMainActivity">
             <intent-filter>
                 <action android:name="action.ui.xfermode.DstMainActivity"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity android:name=".ui.xfermode.OtherModeActivity">
+            <intent-filter>
+                <action android:name="action.ui.xfermode.OtherModeActivity"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>

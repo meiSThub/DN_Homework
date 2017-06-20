@@ -11,6 +11,7 @@
         <item>xfermode的使用;action.ui.xfermode.XfermodeActivity</item>
         <item>xfermode的SRC模式的使用;action.ui.xfermode.SrcMainActivity</item>
         <item>xfermode的DST模式的使用;action.ui.xfermode.DstMainActivity</item>
+        <item>xfermode的其他模式的使用;action.ui.xfermode.OtherModeActivity</item>
         <item>SVG画可交互的台湾地图;action.ui.activity.svg.TaiWanMapActivity</item>
         <item>动画初探;action.ui.paint.AnimationActivity</item>
     </string-array>
