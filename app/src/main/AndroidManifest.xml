@@ -110,6 +110,7 @@
         <activity android:name=".ui.paint.PaintMainActivity"/>
         <activity android:name=".ui.path.PathMainActivity"/>
         <activity android:name=".ui.xfermode.XfermodeMainActivity"/>
+        <activity android:name=".ui.filter.FilterActivity"/>
     </application>
 
 </manifest>

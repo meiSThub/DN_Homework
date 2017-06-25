@@ -54,6 +54,7 @@ public class HeartMap_DSTIN extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        setLayerType(View.LAYER_TYPE_SOFTWARE, null);
 
         mPaint.setColor(Color.WHITE);
         Canvas c = new Canvas(mBitmapShader);
