@@ -111,6 +111,8 @@
         <activity android:name=".ui.path.PathMainActivity"/>
         <activity android:name=".ui.xfermode.XfermodeMainActivity"/>
         <activity android:name=".ui.filter.FilterActivity"/>
+        <activity android:name=".ui.canvas.CanvasBaseActivity"/>
+        <activity android:name=".ui.canvas.CanvasMainActivity"/>
     </application>
 
 </manifest>
