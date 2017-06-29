@@ -13,5 +13,6 @@ public class CanvasMainActivity extends BaseListActivity {
     @Override
     public void initDatas(Map<String, Class> dataMaps) {
         dataMaps.put("Canvas的基本使用", CanvasBaseActivity.class);
+        dataMaps.put("图片的叠加", RevealActivity.class);
     }
 }

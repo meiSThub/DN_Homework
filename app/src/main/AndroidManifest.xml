@@ -113,6 +113,7 @@
         <activity android:name=".ui.filter.FilterActivity"/>
         <activity android:name=".ui.canvas.CanvasBaseActivity"/>
         <activity android:name=".ui.canvas.CanvasMainActivity"/>
+        <activity android:name=".ui.canvas.RevealActivity"/>
     </application>
 
 </manifest>
