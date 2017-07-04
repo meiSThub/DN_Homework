@@ -14,5 +14,6 @@ public class CanvasMainActivity extends BaseListActivity {
     public void initDatas(Map<String, Class> dataMaps) {
         dataMaps.put("Canvas的基本使用", CanvasBaseActivity.class);
         dataMaps.put("图片的叠加", RevealActivity.class);
+        dataMaps.put("搜索按钮动画", SearchViewActivity.class);
     }
 }

@@ -114,6 +114,7 @@
         <activity android:name=".ui.canvas.CanvasBaseActivity"/>
         <activity android:name=".ui.canvas.CanvasMainActivity"/>
         <activity android:name=".ui.canvas.RevealActivity"/>
+        <activity android:name=".ui.canvas.SearchViewActivity"/>
     </application>
 
 </manifest>
