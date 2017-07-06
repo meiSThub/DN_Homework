@@ -68,11 +68,17 @@ public class GallaryHorizonalScrollView extends HorizontalScrollView implements 
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        if (event.getAction() == MotionEvent.ACTION_MOVE) {
+        /*if (event.getAction() == MotionEvent.ACTION_MOVE) {
             //渐变图片
-            reveal();
-        }
+            reveal();//在这里会有抖动的情况，在onScrollChanged方法中执行可以解决抖动
+        }*/
         return false;
+    }
+
+    @Override
+    protected void onScrollChanged(int l, int t, int oldl, int oldt) {
+        super.onScrollChanged(l, t, oldl, oldt);
+        reveal();
     }
 
     private void reveal() {
