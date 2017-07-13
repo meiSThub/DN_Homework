@@ -15,5 +15,6 @@ public class PathMainActivity extends BaseListActivity {
         dataMaps.put("Path的op方法的使用", PathOpActivity.class);
         dataMaps.put("二阶贝塞尔曲线演示", CurveViewActivity.class);
         dataMaps.put("垃圾桶动画", GarbageActivity.class);
+        dataMaps.put("充电水波纹动画", WaveActivity.class);
     }
 }

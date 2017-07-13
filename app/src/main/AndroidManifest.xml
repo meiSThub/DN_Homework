@@ -117,6 +117,7 @@
         <activity android:name=".ui.canvas.SearchViewActivity"/>
         <activity android:name=".ui.path.CurveViewActivity"/>
         <activity android:name=".ui.path.GarbageActivity"/>
+        <activity android:name=".ui.path.WaveActivity"/>
         <activity android:name=".ui.palatte.PaletteActivity"/>
     </application>
 
