@@ -118,7 +118,9 @@
         <activity android:name=".ui.path.CurveViewActivity"/>
         <activity android:name=".ui.path.GarbageActivity"/>
         <activity android:name=".ui.path.WaveActivity"/>
+        <activity android:name=".ui.path.DragBubbleActivity"/>
         <activity android:name=".ui.palatte.PaletteActivity"/>
+
     </application>
 
 </manifest>
