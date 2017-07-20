@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+    <com.mei.test.ui.customview.widget.DoubleImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableLeft="@mipmap/flag_us"
+        android:drawableRight="@mipmap/flag_uk"
+        android:spacing="15dp"
+        android:text="5 - 5"
+        android:layout_gravity="center"
+        android:textColor="#FF0000"
+        android:textSize="32sp"/>
+</LinearLayout>

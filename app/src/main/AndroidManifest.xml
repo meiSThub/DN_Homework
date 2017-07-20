@@ -120,6 +120,10 @@
         <activity android:name=".ui.path.WaveActivity"/>
         <activity android:name=".ui.path.DragBubbleActivity"/>
         <activity android:name=".ui.palatte.PaletteActivity"/>
+        <activity android:name=".ui.customview.CustomViewMainActivity"/>
+        <activity android:name=".ui.customview.ImageViewActivity"/>
+        <activity android:name=".ui.customview.DoubleImageViewActivity"/>
+        <activity android:name=".ui.customview.CustomTextViewActivity"/>
 
     </application>
 

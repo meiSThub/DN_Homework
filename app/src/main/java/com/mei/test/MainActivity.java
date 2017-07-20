@@ -3,6 +3,7 @@ package com.mei.test;
 import com.mei.test.base.BaseListActivity;
 import com.mei.test.ui.animation.AnimationActivity;
 import com.mei.test.ui.canvas.CanvasMainActivity;
+import com.mei.test.ui.customview.CustomViewMainActivity;
 import com.mei.test.ui.filter.FilterActivity;
 import com.mei.test.ui.paint.PaintMainActivity;
 import com.mei.test.ui.palatte.PaletteActivity;
@@ -24,5 +25,6 @@ public class MainActivity extends BaseListActivity {
         dataMaps.put("SVG画可交互的台湾地图", TaiWanMapActivity.class);
         dataMaps.put("动画的基本使用", AnimationActivity.class);
         dataMaps.put("Palette调色板的使用", PaletteActivity.class);
+        dataMaps.put("自定义View", CustomViewMainActivity.class);
     }
 }
