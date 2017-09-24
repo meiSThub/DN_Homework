@@ -124,6 +124,7 @@
         <activity android:name=".ui.customview.ImageViewActivity"/>
         <activity android:name=".ui.customview.DoubleImageViewActivity"/>
         <activity android:name=".ui.customview.CustomTextViewActivity"/>
+        <activity android:name=".ui.flowlayout.FlowLayoutActivity"/>
 
     </application>
 
