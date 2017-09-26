@@ -96,12 +96,7 @@ public class FlowLayout extends ViewGroup {
                     measureWidth = Math.max(measureWidth, currLineWidth);
                 }
             }
-
-        }
-        if (parentWidthMode != MeasureSpec.EXACTLY) {
             measureWidth += getPaddingRight() + getPaddingLeft();
-        }
-        if (parentHeightMode != MeasureSpec.EXACTLY) {
             measureHeight += getPaddingTop() + getPaddingBottom();
         }
         LogUtils.i("plum", "measureWidth=" + measureWidth + ";measureHeight=" + measureHeight);
