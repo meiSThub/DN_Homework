@@ -98,8 +98,12 @@ public class FlowLayout extends ViewGroup {
             }
 
         }
-        measureWidth += getPaddingRight() + getPaddingLeft();
-        measureHeight += getPaddingTop() + getPaddingBottom();
+        if (parentWidthMode != MeasureSpec.EXACTLY) {
+            measureWidth += getPaddingRight() + getPaddingLeft();
+        }
+        if (parentHeightMode != MeasureSpec.EXACTLY) {
+            measureHeight += getPaddingTop() + getPaddingBottom();
+        }
         LogUtils.i("plum", "measureWidth=" + measureWidth + ";measureHeight=" + measureHeight);
         // 最终目的
         setMeasuredDimension(measureWidth, measureHeight);
