@@ -1,6 +1,7 @@
 package com.mei.test.ui.flowlayout;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.util.AttributeSet;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,10 +19,6 @@ import java.util.List;
 public class FlowLayout extends ViewGroup {
 
     /**
-     * 用来保存每行views的列表
-     */
-    private List<List<View>> mViewLinesList = new ArrayList<>();
-    /**
      * 用来保存行高的列表
      */
     private List<Integer> mLineHeights = new ArrayList<>();
@@ -36,9 +33,13 @@ public class FlowLayout extends ViewGroup {
         super(context, attrs);
     }
 
+    public FlowLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+    }
+
     @Override
     public LayoutParams generateLayoutParams(AttributeSet attrs) {
-        return new MarginLayoutParams(getContext(), attrs);
+        return new FlowLayoutParams(getContext(), attrs);
     }
 
     @Override
@@ -52,57 +53,53 @@ public class FlowLayout extends ViewGroup {
         int measureWidth = 0;//测量到的FlowLayout的宽度
         int measureHeight = 0;
         int currLineWidth = 0;//当前行的最大宽度
-        int currLineHeight = 0;//当前行的最大高度
+
         if (parentWidthMode == MeasureSpec.EXACTLY && parentHeightMode == MeasureSpec.EXACTLY) {
             measureWidth = parentLessWidthSpecSize;
             measureHeight = parentLessHeihtSpecSize;
-            LogUtils.i("plum","-----确定值------");
+            LogUtils.i("plum", "-----确定值------");
         } else {
             int childUsedWidth;
             int childUsedHeight;
-            List<View> viewList = new ArrayList<>();
+            List<View> currLineViews = new ArrayList<>();
             int childCount = getChildCount();
+            int line = 0;//行号
             for (int i = 0; i < childCount; i++) {
                 View child = getChildAt(i);
-                measureChild(child, widthMeasureSpec, heightMeasureSpec);//测量子View
-                MarginLayoutParams layoutParams = (MarginLayoutParams) child.getLayoutParams();
-                childUsedWidth = child.getMeasuredWidth() + layoutParams.leftMargin + layoutParams.rightMargin;
-                childUsedHeight = child.getMeasuredHeight() + layoutParams.topMargin + layoutParams.bottomMargin;
-                if (currLineWidth + childUsedWidth > parentLessWidthSpecSize) {//说明需要换行了
-                    /**1、记录当前行的信息***/
+                measureChild(child, widthMeasureSpec, heightMeasureSpec);
 
-                    //1、记录当前行的最大宽度，高度累加
-                    measureWidth = Math.max(measureWidth, currLineWidth);
-                    measureHeight += currLineHeight;
-                    //2、将当前行的viewList添加至总的mViewsList，将行高添加至总的行高List
-                    mViewLinesList.add(viewList);
-                    mLineHeights.add(currLineHeight);
-
-                    //1、重新赋值新一行的宽、高
-                    currLineWidth = childUsedWidth;
-                    currLineHeight = childUsedHeight;
-                    // 2、新建一行的viewlist，添加新一行的view
-                    viewList = new ArrayList<>();
-                    viewList.add(child);
-                } else {
-                    // 记录某行内的消息
-                    //1、行内宽度的叠加、高度比较
-                    currLineWidth += childUsedWidth;
-                    currLineHeight = Math.max(currLineHeight, childUsedHeight);
-                    // 2、添加至当前行的viewList中
-                    viewList.add(child);
+                int currLineHeight = 0;//当前行的最大高度
+                if (mLineHeights.size() > line) {
+                    currLineHeight = mLineHeights.get(line);
                 }
-                /*****3、如果正好是最后一行需要换行**********/
-                if (i == childCount - 1) {
-                    //1、记录当前行的最大宽度，高度累加
+
+                FlowLayoutParams params = (FlowLayoutParams) child.getLayoutParams();
+                childUsedWidth = child.getMeasuredWidth() + params.leftMargin + params.rightMargin;
+                childUsedHeight = child.getMeasuredHeight() + params.topMargin + params.bottomMargin;
+                if (childUsedWidth + currLineWidth <= parentLessWidthSpecSize - getPaddingLeft() - getPaddingRight()) {//位置够，不用换行
+                    currLineWidth += childUsedWidth;//当前行的宽度
+                    currLineViews.add(child);
+                    currLineHeight = Math.max(currLineHeight, childUsedHeight);//当前行的最大高度
+                    mLineHeights.add(line, currLineHeight);//当前行的行高
+                } else {//换行
+                    measureHeight += mLineHeights.get(line);//计算所有行的总高度
+                    mLineHeights.add(++line, childUsedHeight);//换行后重置新一行的行高
+                    measureWidth = Math.max(measureWidth, currLineWidth);//计算最大宽度
+
+                    currLineWidth = childUsedWidth;
+                    currLineViews = new ArrayList<>();
+                    currLineViews.add(child);
+                }
+                params.lineNum = line;
+                if (i == childCount - 1) {//如果只有一行或者大于一行时，最后肯定是没有走换行分支的，所以在最后需要把漏的都加上
+                    measureHeight += mLineHeights.get(line);//计算所有行的总高度
                     measureWidth = Math.max(measureWidth, currLineWidth);
-                    measureHeight += currLineHeight;
-                    //2、将当前行的viewList添加至总的mViewsList，将行高添加至总的行高List
-                    mViewLinesList.add(viewList);
-                    mLineHeights.add(currLineHeight);
                 }
             }
+
         }
+        measureWidth += getPaddingRight() + getPaddingLeft();
+        measureHeight += getPaddingTop() + getPaddingBottom();
         LogUtils.i("plum", "measureWidth=" + measureWidth + ";measureHeight=" + measureHeight);
         // 最终目的
         setMeasuredDimension(measureWidth, measureHeight);
@@ -111,27 +108,36 @@ public class FlowLayout extends ViewGroup {
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         int left, top, right, bottom;
-        int curTop = 0;
-        int curLeft = 0;
-        int lineCount = mViewLinesList.size();
-        for (int i = 0; i < lineCount; i++) {
-            List<View> viewList = mViewLinesList.get(i);
-            int lineViewSize = viewList.size();
-            for (int j = 0; j < lineViewSize; j++) {
-                View child = viewList.get(j);
-                MarginLayoutParams params = (MarginLayoutParams) child.getLayoutParams();
-                left = curLeft + params.leftMargin;
-                top = curTop + params.topMargin;
-                right = left + child.getMeasuredWidth();
-                bottom = top + child.getMeasuredHeight();
-                child.layout(left, top, right, bottom);
-                curLeft += child.getMeasuredWidth() + params.leftMargin + params.rightMargin;
+        int curTop = getPaddingTop();
+        int curLeft = getPaddingLeft();
+
+        int count = getChildCount();
+        LogUtils.i("plum", "count=" + count);
+        int lastLine = 0;
+        for (int i = 0; i < count; i++) {
+            View child = getChildAt(i);
+            if (child.getVisibility() == GONE) continue;
+            FlowLayoutParams params = (FlowLayoutParams) child.getLayoutParams();
+            LogUtils.i("plum", "lastLine=" + lastLine + ";lineNum=" + params.lineNum);
+            if (lastLine != params.lineNum) {//需要换行了
+                curLeft = getPaddingLeft();
+                curTop += mLineHeights.get(lastLine);//上一行的高度
             }
-            curLeft = 0;
-            curTop += mLineHeights.get(i);
+            left = curLeft + params.leftMargin;
+            top = curTop + params.topMargin;
+            right = left + child.getMeasuredWidth();
+            bottom = top + child.getMeasuredHeight();
+            child.layout(left, top, right, bottom);
+
+            lastLine = params.lineNum;
+            curLeft += child.getMeasuredWidth() + params.leftMargin + params.rightMargin;
         }
-        mViewLinesList.clear();
         mLineHeights.clear();
+    }
+
+    @Override
+    protected void onDraw(Canvas canvas) {
+        super.onDraw(canvas);
     }
 
     public interface OnItemClickListener {
@@ -163,5 +169,14 @@ public class FlowLayout extends ViewGroup {
 
     public OnItemClickListener getOnItemClickListener() {
         return mOnItemClickListener;
+    }
+
+    public static class FlowLayoutParams extends MarginLayoutParams {
+
+        public int lineNum;//行号
+
+        public FlowLayoutParams(Context c, AttributeSet attrs) {
+            super(c, attrs);
+        }
     }
 }

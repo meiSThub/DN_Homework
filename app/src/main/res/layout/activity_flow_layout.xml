@@ -6,38 +6,38 @@
     android:orientation="vertical">
 
     <com.mei.test.ui.flowlayout.FlowLayout
+        android:id="@+id/fl_root"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#86a181">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="hello"
-            android:textSize="22dp"
-            android:layout_margin="4dp"/>
+        android:background="#86a181"
+        android:padding="20dp">
 
         <TextView
             style="@style/text_flag_01"
-            android:text="hello,hi" />
+            android:text="hello,First"/>
+
+        <TextView
+            style="@style/text_flag_01"
+            android:text="hello,hi"/>
 
         <TextView
             style="@style/text_flag_01"
             android:text="你是我的"
             android:textSize="18sp"
+            android:visibility="gone"
             />
 
         <TextView
             style="@style/text_flag_01"
-            android:text="hello,man" />
+            android:text="hello,man"/>
 
         <TextView
             style="@style/text_flag_01"
-            android:text="helloview" />
+            android:text="helloview"/>
 
         <TextView
             style="@style/text_flag_01"
-            android:text="view" />
+            android:text="view"/>
 
         <TextView
             style="@style/text_flag_01"
@@ -47,41 +47,41 @@
 
         <TextView
             style="@style/text_flag_01"
-            android:text="he" />
+            android:text="he"/>
 
         <TextView
             style="@style/text_flag_01"
-            android:text="hello" />
+            android:text="hello"/>
 
         <TextView
             style="@style/text_flag_01"
-            android:text="textview" />
+            android:text="textview"/>
 
         <TextView
             style="@style/text_flag_01"
-            android:text="view" />
+            android:text="view"/>
 
         <TextView
             style="@style/text_flag_01"
-            android:text="hello,view" />
+            android:text="hello,截止"/>
 
         <TextView
             style="@style/text_flag_01"
-            android:text="hello,mt" />
+            android:text="hello,滚蛋"/>
 
         <TextView
             style="@style/text_flag_01"
-            android:text="hel" />
-        <TextView
-            style="@style/text_flag_01"
-            android:text="hel" />
+            android:text="坚实的蜂蜜水"/>
 
         <TextView
             style="@style/text_flag_01"
-            android:text="hel2" />
+            android:text="张艺萌"/>
+
+        <TextView
+            style="@style/text_flag_01"
+            android:text="好午餐,end"/>
 
     </com.mei.test.ui.flowlayout.FlowLayout>
-
 
 
 </LinearLayout>
