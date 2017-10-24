@@ -56,6 +56,12 @@ public class CanvasBaseView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
+        /*Paint paint = new Paint();
+        paint.setColor(0xaadc2e07);
+        float fp[]=new float[]{100,100,100,250,100,400,100,550};
+        paint.setStrokeWidth(100);
+        paint.setStrokeCap(Paint.Cap.ROUND);
+        canvas.drawPoints(fp,3,4,paint);*/
 //        drawLine(canvas);
 //        drawLines(canvas);
 //        drawPoint(canvas);
@@ -68,14 +74,14 @@ public class CanvasBaseView extends View {
 //        drawPath(canvas);
 //        drawRoundPath(canvas);
 //        drawOvalPath(canvas);
-//        drawRegion(canvas);
+        drawRegion(canvas);
 //        translate(canvas);
 //        translateSave(canvas);
 //        rotate(canvas);
 //        skew(canvas);
 //        saveAndRestore(canvas);
 //        clip(canvas);
-        saveLayer(canvas);
+//        saveLayer(canvas);
     }
 
     public void drawLine(Canvas canvas) {
@@ -129,7 +135,7 @@ public class CanvasBaseView extends View {
 
     //画扇形
     public void drawArc(Canvas canvas) {
-        RectF r = new RectF(100, 100, 400, 400);
+        RectF r = new RectF(100, 100, 400, 800);
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setColor(Color.BLUE);
         canvas.drawRect(r, mPaint);
@@ -144,7 +150,7 @@ public class CanvasBaseView extends View {
 //        canvas.drawArc(r, 0, 360f, true, mPaint);//在指定的局域r里面，画出一个内切圆
 
         //如果指定区域是一个正方形，则画出来的是圆形弧（或圆），如果是长方形，则画出的是椭圆弧（或椭圆）
-        canvas.drawArc(r, -90, 90f, false, mPaint);//顺时针旋转90度，
+        canvas.drawArc(r, -90, 90f, true, mPaint);//顺时针旋转90度，
 
     }
 
@@ -189,16 +195,17 @@ public class CanvasBaseView extends View {
         Path path = new Path();
         path.addOval(r, Path.Direction.CCW);*/
 
-        RectF rectF = new RectF(100, 100, 400, 500);//指定矩形区域
+        RectF rectF = new RectF(10, 10, 400, 500);//指定矩形区域
         Path path = new Path();
         //两两一对,分别指定了矩形四个角的圆角半径,如果大小一样，则是圆角，如果不一样，则是椭圆角，从左上角开始
         float radii[] = {10, 10, 10, 10, 10, 10, 50, 60};
         path.addRoundRect(rectF, radii, Path.Direction.CCW);
+//        path.addOval(10,10,300,400, Path.Direction.CCW);
 
         //创建一块矩形区域
         Region region = new Region(100, 100, 600, 800);
         Region region1 = new Region();
-        region1.setPath(path, region);//path的椭圆区域和矩形区域进行交集
+        region1.setPath(path, region);//用指定的Path和裁剪范围构建一个区域
 
         mPaint.setStyle(Paint.Style.STROKE);
         mPaint.setStrokeWidth(1);
@@ -209,6 +216,8 @@ public class CanvasBaseView extends View {
             canvas.drawRect(rect, mPaint);
         }
     }
+
+
 
     /**
      * 画布平移

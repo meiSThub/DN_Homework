@@ -125,6 +125,8 @@
         <activity android:name=".ui.customview.DoubleImageViewActivity"/>
         <activity android:name=".ui.customview.CustomTextViewActivity"/>
         <activity android:name=".ui.flowlayout.FlowLayoutActivity"/>
+        <activity android:name=".ui.canvas.RegionOpTestActivity"/>
+        <activity android:name=".test.TestActivity"/>
 
     </application>
 

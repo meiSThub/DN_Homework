@@ -15,5 +15,6 @@ public class CanvasMainActivity extends BaseListActivity {
         dataMaps.put("Canvas的基本使用", CanvasBaseActivity.class);
         dataMaps.put("图片的叠加", RevealActivity.class);
         dataMaps.put("搜索按钮动画", SearchViewActivity.class);
+        dataMaps.put("Region.Op相关值的用法", RegionOpTestActivity.class);
     }
 }
