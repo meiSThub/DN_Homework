@@ -1,6 +1,8 @@
 package com.mei.test;
 
+import com.mei.test.autofit.AutoFitMainActivity;
 import com.mei.test.base.BaseListActivity;
+import com.mei.test.test.TestActivity;
 import com.mei.test.ui.animation.AnimationActivity;
 import com.mei.test.ui.canvas.CanvasMainActivity;
 import com.mei.test.ui.customview.CustomViewMainActivity;
@@ -18,6 +20,7 @@ import java.util.Map;
 public class MainActivity extends BaseListActivity {
     @Override
     public void initDatas(Map<String, Class> dataMaps) {
+        dataMaps.put("测试", TestActivity.class);
         dataMaps.put("手写流式布局", FlowLayoutActivity.class);
         dataMaps.put("Paint的用法", PaintMainActivity.class);
         dataMaps.put("xfermode的使用", XfermodeMainActivity.class);
@@ -28,5 +31,6 @@ public class MainActivity extends BaseListActivity {
         dataMaps.put("动画的基本使用", AnimationActivity.class);
         dataMaps.put("Palette调色板的使用", PaletteActivity.class);
         dataMaps.put("自定义View", CustomViewMainActivity.class);
+        dataMaps.put("屏幕适配", AutoFitMainActivity.class);
     }
 }

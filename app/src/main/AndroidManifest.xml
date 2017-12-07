@@ -126,8 +126,15 @@
         <activity android:name=".ui.customview.CustomTextViewActivity"/>
         <activity android:name=".ui.flowlayout.FlowLayoutActivity"/>
         <activity android:name=".ui.canvas.RegionOpTestActivity"/>
+        <activity android:name=".ui.path.PathApiActivity"/>
         <activity android:name=".test.TestActivity"/>
-
+        <activity android:name=".autofit.case1.AutoFitActivity">
+        </activity>
+        <activity android:name=".autofit.case2.AutoFit2Activity">
+        </activity>
+        <activity android:name=".autofit.case3.AutoFit3Activity">
+        </activity>
+        <activity android:name=".autofit.AutoFitMainActivity"/>
     </application>
 
 </manifest>

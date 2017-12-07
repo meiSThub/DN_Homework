@@ -63,4 +63,17 @@
         <attr name="leftBottomTvColor" format="color"/>
     </declare-styleable>
 
+    <declare-styleable name="PercentRelativeLayout">
+        <attr name="layout_widthPercent" format="float"/>
+        <attr name="layout_heightPercent" format="float"/>
+    </declare-styleable>
+
+    <declare-styleable name="AutoFitView">
+        <attr name="layout_autoFitWidth" format="integer"/>
+        <attr name="layout_autoFitHeight" format="integer"/>
+        <attr name="layout_autoFitLeftMargin" format="integer"/>
+        <attr name="layout_autoFitTopMargin" format="integer"/>
+        <attr name="layout_autoFitBottomMargin" format="integer"/>
+    </declare-styleable>
+
 </resources>
