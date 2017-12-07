@@ -17,5 +17,6 @@ public class PathMainActivity extends BaseListActivity {
         dataMaps.put("垃圾桶动画", GarbageActivity.class);
         dataMaps.put("充电水波纹动画", WaveActivity.class);
         dataMaps.put("qq消息气泡的实现", DragBubbleActivity.class);
+        dataMaps.put("Path基础Api练习", PathApiActivity.class);
     }
 }
