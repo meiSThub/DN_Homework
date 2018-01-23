@@ -3,6 +3,7 @@ package com.mei.test;
 import com.mei.test.autofit.AutoFitMainActivity;
 import com.mei.test.base.BaseListActivity;
 import com.mei.test.test.TestActivity;
+import com.mei.test.ui.MaterialDesign.MaterialDesignMainActivity;
 import com.mei.test.ui.animation.AnimationActivity;
 import com.mei.test.ui.canvas.CanvasMainActivity;
 import com.mei.test.ui.customview.CustomViewMainActivity;
@@ -32,5 +33,6 @@ public class MainActivity extends BaseListActivity {
         dataMaps.put("Palette调色板的使用", PaletteActivity.class);
         dataMaps.put("自定义View", CustomViewMainActivity.class);
         dataMaps.put("屏幕适配", AutoFitMainActivity.class);
+        dataMaps.put("MeterialDesign相关API的使用", MaterialDesignMainActivity.class);
     }
 }

@@ -135,6 +135,10 @@
         <activity android:name=".autofit.case3.AutoFit3Activity">
         </activity>
         <activity android:name=".autofit.AutoFitMainActivity"/>
+        <activity android:name=".ui.MaterialDesign.MaterialDesignMainActivity">
+        </activity>
+        <activity android:name=".ui.MaterialDesign.ItemTouchHelperActivity">
+        </activity>
     </application>
 
 </manifest>
