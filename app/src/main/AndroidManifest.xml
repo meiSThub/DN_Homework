@@ -139,6 +139,10 @@
         </activity>
         <activity android:name=".ui.MaterialDesign.ItemTouchHelperActivity">
         </activity>
+        <activity android:name=".optimize.bitmap.BitmapMemoryOptimizeActivity">
+        </activity>
+        <activity android:name=".optimize.OptimizeMainActivity">
+        </activity>
     </application>
 
 </manifest>
