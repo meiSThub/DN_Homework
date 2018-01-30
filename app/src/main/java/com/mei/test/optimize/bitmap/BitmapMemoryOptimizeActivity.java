@@ -28,7 +28,7 @@ public class BitmapMemoryOptimizeActivity extends AppCompatActivity {
 
         ImageCache.getInstance().init(this, Environment.getExternalStorageDirectory()+"/dn");
 
-        ListView listView = (ListView) findViewById(R.id.listView);
+        ListView listView = (ListView) findViewById(R.id.list_view);
         listView.setAdapter(new MyAdapter(this));
 
 //        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.lance);
