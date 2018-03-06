@@ -50,9 +50,10 @@ public class BigView extends View implements GestureDetector.OnGestureListener, 
         mRect = new Rect();
         //解码图片的配置
         mOptions = new BitmapFactory.Options();
-
+        //手势
         mGestureDetetor = new GestureDetector(context, this);
         setOnTouchListener(this);
+        // 滑动帮助
         mScroller = new Scroller(context);
     }
 
@@ -127,10 +128,11 @@ public class BigView extends View implements GestureDetector.OnGestureListener, 
      */
     @Override
     public boolean onDown(MotionEvent e) {
-        if (!mScroller.isFinished()) {
+        if (!mScroller.isFinished()) {//如果滑动还没有停止 强制停止
             mScroller.forceFinished(true);
         }
         //如果处理了down事件，还想处理up事件，那么在down事件的时候，就需要返回true
+        //继续接收后续事件
         return true;
     }
 
@@ -168,6 +170,8 @@ public class BigView extends View implements GestureDetector.OnGestureListener, 
             mRect.top = 0;
             mRect.bottom = (int) (mViewHeight / mScale);
         }
+        //重绘
+        invalidate();
         return false;
     }
 

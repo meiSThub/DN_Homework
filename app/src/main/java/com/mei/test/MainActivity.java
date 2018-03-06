@@ -2,6 +2,7 @@ package com.mei.test;
 
 import com.mei.test.autofit.AutoFitMainActivity;
 import com.mei.test.base.BaseListActivity;
+import com.mei.test.optimize.OptimizeMainActivity;
 import com.mei.test.test.TestActivity;
 import com.mei.test.ui.MaterialDesign.MaterialDesignMainActivity;
 import com.mei.test.ui.animation.AnimationActivity;
@@ -34,5 +35,7 @@ public class MainActivity extends BaseListActivity {
         dataMaps.put("自定义View", CustomViewMainActivity.class);
         dataMaps.put("屏幕适配", AutoFitMainActivity.class);
         dataMaps.put("MeterialDesign相关API的使用", MaterialDesignMainActivity.class);
+        dataMaps.put("性能优化", OptimizeMainActivity.class);
+
     }
 }
