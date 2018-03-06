@@ -1,0 +1,126 @@
+观察者模式（Observer):定义了一种一对多的依赖关系，让多个观察者对象同事监听某一个主题对象。
+这个主题对象再状态发生变化的时候，会通知所有观察者对象，是他们能够自动更新自己。
+
+通俗解释：
+    观察者模式面向的需求是：A对象（观察者）对B对象（被观察者）的某种变化高度敏感，需要在B变化的一瞬间做出反应。
+    举个例子，新闻里喜闻乐见的警察抓小偷，警察需要在小偷伸手作案的时候实施抓捕。在这个例子里，警察是观察者、
+    小偷是被观察者，警察需要时刻盯着小偷的一举一动，才能保证不会错过任何瞬间。
+    程序里的观察者和这种真正的【观察】略有不同，观察者不需要时刻盯着被观察者（例如A不需要每隔1ms就检查一次B的状态），
+    二是采用注册(Register)或者成为订阅(Subscribe)的方式告诉被观察者：我需要你的某某状态，你要在它变化时通知我。
+    采取这样被动的观察方式，既省去了反复检索状态的资源消耗，也能够得到最高的反馈速度。
+
+
+uml图解析：
+Subject：抽象主题（抽象被观察者），抽象主题角色把所有观察者对象保存在一个集合里，
+         每个主题都可以有任意数量的观察者，抽象主题提供一个接口，可以增加和删除观察者对象。
+ConcreteSubject：具体主题（具体被观察者），该角色将有关状态存入具体观察者对象，
+         在具体主题的内部状态发生改变时，给所有注册过的观察者发送通知。
+Observer：抽象观察者，是观察者者的抽象类，它定义了一个更新接口，使得在得到主题更改通知时更新自己。
+ConcrereObserver：具体观察者，实现抽象观察者定义的更新接口，以便在得到主题更改通知时更新自身的状态。
+
+
+
+使用场景：
+    （1）关联行为场景，需要注意的是，关联行为是可拆分的，而不是“组合”关系。
+    （2）事件多级触发场景。
+    （3）跨系统的消息交换场景，如消息队列、事件总线的处理机制。
+优点：
+    解除耦合，让耦合的双方都依赖于抽象，从而使得各自的变换都不会影响另一边的变换。
+缺点：
+    在应用观察者模式时需要考虑一下开发效率和运行效率的问题，程序中包括一个被观察者、多个观察者，开发、调试等
+内容会比较复杂，而且在Java中消息的通知一般是顺序执行，那么一个观察者卡顿，会影响整体的执行效率，在这种情况下，一般会采用异步实现。
+
+案例实现：
+    我们接到一个来自气象局的需求：气象局需要我们构建一套系统，这系统有两个公告牌，分别用于显示当前的实时天气和
+未来几天的天气预报。当气象局发布新的天气数据（WeatherData）后，两个公告牌上显示的天气数据必须实时更新。
+气象局同时要求我们保证程序拥有足够的可扩展性，因为后期随时可能要新增新的公告牌。
+
+
+
+分析观察者对象再Android中的应用：ListView BaseAdapter
+BaseAdapter源码：
+
+public abstract class BaseAdapter implements ListAdapter, SpinnerAdapter {
+    private final DataSetObservable mDataSetObservable = new DataSetObservable();
+
+    public boolean hasStableIds() {
+        return false;
+    }
+
+    public void registerDataSetObserver(DataSetObserver observer) {
+        mDataSetObservable.registerObserver(observer);
+    }
+
+    public void unregisterDataSetObserver(DataSetObserver observer) {
+        mDataSetObservable.unregisterObserver(observer);
+    }
+   。。。
+}
+
+1、从这里可以看出DataSetObservable就是被观察者，看其源码可以看到Observable是被观察者（即主题对象的抽象），
+里面定义了注册观察者，移除观察者，通过等三要素。详情可看具体源码。
+
+2、每次改变ListView的数据的时候，需要notifyDataSetChanged，该方法内部调用了被观察者对象的通知方法： mDataSetObservable.notifyChanged();
+public class DataSetObservable extends Observable<DataSetObserver> {
+    /**
+     * Invokes {@link DataSetObserver#onChanged} on each observer.
+     * Called when the contents of the data set have changed.  The recipient
+     * will obtain the new contents the next time it queries the data set.
+     */
+    public void notifyChanged() {//被观察者对象的通知方法
+        synchronized(mObservers) {
+            // since onChanged() is implemented by the app, it could do anything, including
+            // removing itself from {@link mObservers} - and that could cause problems if
+            // an iterator is used on the ArrayList {@link mObservers}.
+            // to avoid such problems, just march thru the list in the reverse order.
+            for (int i = mObservers.size() - 1; i >= 0; i--) {
+                mObservers.get(i).onChanged();//调用了观察者对象的更新方法
+            }
+        }
+    }
+然后观察者对象在onChanged方法中去处理。
+
+3、还有个问题，registerDataSetObserver(DataSetObserver observer)什么时候被调用的
+
+看源码发现原来是在ListView的setAdapter方法中调用的
+public void setAdapter(ListAdapter adapter) {
+..............................................
+        super.setAdapter(adapter);
+
+        if (mAdapter != null) {
+            ..........................//AdapterDataSetObserver观察者,是AbsListView里的内部类
+            mDataSetObserver = new AdapterDataSetObserver();
+            mAdapter.registerDataSetObserver(mDataSetObserver);
+
+            。。。。。。。。。。。。。。。。。。
+        } else {
+            mAreAllItemsSelectable = true;
+            checkFocus();
+            // Nothing selected
+            checkSelectionChanged();
+        }
+
+        requestLayout();
+    }
+
+看到里面初始化了一个对象AdapterDataSetObserver，这个对象在AbsListView里的内部类
+
+ class AdapterDataSetObserver extends AdapterView<ListAdapter>.AdapterDataSetObserver {
+        @Override
+        public void onChanged() {
+            super.onChanged();
+            if (mFastScroll != null) {
+                mFastScroll.onSectionsChanged();
+            }
+        }
+
+        @,
+        public void onInvalidated() {
+            super.onInvalidated();
+            if (mFastScroll != null) {
+                mFastScroll.onSectionsChanged();
+            }
+        }
+    }
+
+实现了具体的onChanged方法，好了，基本理清楚Adapter里面怎么通知更新数据了。
