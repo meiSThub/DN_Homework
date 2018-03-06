@@ -1,0 +1,246 @@
+使用AIDL的步骤：
+1、定义一个用于进程间通信的AIDL接口。
+2、创建实体类同名的AIDL文件，声明它为Parcelable类型。
+3、远程服务端Service的实现。
+4、客户端的实现，绑定远程服务,并在onBind方法中，返回一个继承AIDL接口中的Stub类的Binder对象。
+5、设置AIDL接口回调（非必须）。
+6、添加Binder死亡监听（非必须）。
+7、给远程服务添加权限验证。
+
+步骤详解：
+
+1、创建一个用于进程间通信的aidl接口，如IBookManager.aidl，
+
+注意：
+    1）AIDL接口文件中，并不是所有的数据类型都是可以使用的，支持的数据类型如下：
+        （1）基本数据类型（int、long、char、boolean、double等）;
+        （2）String和CharSequence；
+        （3）List:只支持ArrayList，里面每个元素都必须能够被AIDL支持；
+        （4）Map:只支持HashMap,里面的每个元素都必须能够被AIDL支持，包括key和value；
+        （5）Parcelable：所有实现了Parcelable接口的对象；
+        （6）AIDL：所有的AIDL接口本身也可以在AIDL文件中使用。
+
+    如：在IBookManager.aidl接口文件中，使用到了Book类，Book就是实现了Parcelable接口的类。
+
+    2）
+    /**
+    * aidl接口文件中声明的方法，方法的参数除了基本数据类型，其他类型的参数都必须标明方向：
+    * 即in、out或者inout。
+    * in :表示输入型参数，
+    * out:表示输出型参数，
+    * inout:表示输入输出型参数。
+    * 我们可以根据实际需要去指定参数的方向，不能一概使用out或者inout，因为这在底层实现是
+    * 有开销的。
+    */
+    void addBook(in Book book);
+
+    3）AIDL接口中，只支持方法声明，不支持静态变量声明，这一点区别于传统接口。
+
+    建议：为了方便AIDL的开发，建议把所有和AIDL相关的类和文件全部放入同一个包中，这样做的
+    好处是，当客户端是另外一个应用时，我们可以直接把整个包复制到客户端中。
+
+    需要注意的是，AIDL文件的包结构在服务端和客户端要保持一致，否则运行会出错，这是因为客
+    户端需要反序列化服务端中和AIDL接口相关的所有的类，如果类的完整路径不一样的话，就无法
+    成功反序列化，程序也就无法正常运行了。
+
+2、创建实体类同名的AIDL文件，声明它为Parcelable类型。如果AIDL接口中，没有用到实体类参数，可省略此步骤。
+
+    如果在AIDL接口文件中，用到了自定义的Parcelable对象，那么必须新建一个和它同名的AIDL文件，
+    并在其中声明它为Parcelable类型。
+
+    如：在IBookManager.aidl接口文件中，使用到了Book类，所以我们必须要创建一个Book.aidl文件
+    ，并添加内容为：
+    package com.ubt.ipc.aidl;//定义包名
+
+    parcelable Book;//声明Book为Parcelable类型
+
+3、远程服务端Service的实现，如BookManagerService。
+   （1）创建服务端Service，实现第一步定义AIDL的接口。如BookManagerService中的mBinder对象，这个对象就是继承自
+   IBookManager.Stub并实现了它内部的AIDL方法（如：getBookList和addBook）。
+   （2）在onBind方法中，返回这个mBinder对象。
+   （3）注册Service。
+
+4、客户端的实现，如BookManagerActivity。
+    （1）绑定远程服务，如bindService。
+    （2）绑定成功后将服务端返回的Binder对象转换成AIDL接口，如：
+         IBookManager bookManager = IBookManager.Stub.asInterface(service);。
+    （3）通过这个AIDL接口就可以去调用远程服务的方法了，如：
+         List<Book> list = bookManager.getBookList();。
+         注意：如果服务端的方法是耗时的，这个时候就需要调用远程服务的方法放入工作线程去执行。
+
+以上步骤就是一次完整的使用AIDL进行IPC的过程，以下为补充：
+5、AIDL中的接口回调，回调的接口也必须是AIDL接口,如：IOnNewBookArrivedListener接口.
+   因为在AIDL中是无法使用普通接口的，只能是AIDL接口。
+   具体实现：AIDL看：com.ubt.ipc.aidl中的类。
+            代码实现：aidlcallback中的类.
+   （1）在客户端实现AIDL接口回调，如：BookManagerActivity中：
+       private IOnNewBookArrivedListener mOnNewBookArrivedListener = new IOnNewBookArrivedListener.Stub()
+       并给服务端注册和解注册该回调：
+       bookManager.registerListener(mOnNewBookArrivedListener);
+       在onDestory方法中解注册。
+
+       注意：在我们注册接口回调的时候，Binder会把客户端传递过来的接口对象重新转化并生成一个新的对象。虽然我们
+            在注册和解注册过程中使用的时同一个客户端对象，但是通过Binder传递到服务端后，却会生成两个全新的对象。
+            对象是不能跨进程传输的，对象的跨进程传输本质上都是反序列化的过程，这就是为什么AIDL中自定义对象都必须要
+            实现Parcelable接口的原因。
+       为了能够使注册和解注册过程能够实现，在服务端可以用RemoteCallbackList来保存客户端注册的AIDL接口回调。
+
+       RemoteCallbackList是系统专门提供的用于删除跨进程listener的接口，RemoteCallbackList是一个泛型，支持
+       管理任意的AIDL接口，这一点从它的声明就可以看出，因为所有的AIDL接口都继承自IInterface接口。
+       public class RemoteCallbackList<E extends IInterface>。
+
+       RemoteCallbackList工作原理：
+            在RemoteCallbackList的内部有一个Map结构专门用来保存所有的AIDL回调，这个Map的key是IBinder类型，
+            value是Callback类型，如下所示：
+            ArrayMap<IBinder,Callback> mCallbacks=new ArrayMap<IBinder,Callback>();
+            其中Callback中封装了真正的远程listener。当客户端注册listener的时候，它会把这个listener的信息
+            存入到mCallbacks中,其中key和value分别通过下面的方式获得：
+            IBinder key=listener.asBinder();
+            Callback value=new Callback(listener,cookie);
+       看到这里我们知道：虽然说多次跨进程传输客户端的同一个对象会在服务端生成不同的对象，但是这些新生成的对象
+       有一个共同的特点，那就是他们底层的Binder对象是同一个，利用这个特性，就可以实现接口的注册与解注册功能了。
+
+       RemoteCallbackList还有一个很有用的功能，就是当客户端进程终止后，它能够自动移除客户端所注册的listener。
+       另外，RemoteCallbackList内部自动实现了线程同步的功能，所以我们使用他来注册和解注册时，不需要做额外的
+       线程同步工作。
+
+       RemoteCallbackList常用方法介绍：
+            register:注册接口。
+            unregister:解注册接口。
+            beginBroadcast：获取集合的大小，相当于list.size方法。
+            finishBroadcast:与beginBroadcast成对出现，如果没有关闭，则会出错。
+
+   （2）在服务端回调客户端的注册的监听：onNewBookArrived方法里面的实现。
+
+几点说明：
+    （1）我们知道，客户端调用远程服务的方法，被调用的方法运行在服务端的Binder线程池中，同时客户端线程会被挂起。
+         如果服务端方法执行比较耗时，就是导致客户端进程长时间阻塞在那里，而如果这个客户端线程是UI线程的话，
+         就会导致客户端ANR。因此，如果我们明确知道某个远程方法是耗时的，那么就要避免在客户端的UI线程中去访问
+         远程方法。
+    （2）由于客户端的onServiceConnected和onServiceDisconnected方法都运行在UI线程中，所以也不可以
+         在他们里面直接调用服务端的耗时方法，这样尤其要注意。
+    （3）由于服务端的方法本身就运行在服务端的Binder线程池中，所以服务端方法本身就可以执行大量耗时操作，这个
+         时候切记不要在服务端方法中开线程去执行异步任务了，除非你明确知道自己在干什么，否则不建议这么做。
+    （4）同理，当远程服务端需要调用客户端listener中的方法时，被调用的方法也运行在Binder线程池中，只不过是
+         客户端的Binder线程池。所以同样不可以在服务端的UI线程中调用客户端的耗时方法，
+
+6、添加Binder死亡监听。
+    Binder是可能意外死亡的，这往往是由于服务端进程意外停止了，这时我们需要重新连接服务。这就需要我们监听服务端
+    的死亡时间并重新连接服务，这里有两种方法：
+    （1）给Binder设置DeathRecipient监听，即死亡代理。当Binder死亡时，我们会收到binderDied方法的回调，在
+        binderDied方法中，我们可以重连远程服务。如：BookManagerActivity中的mDeathRecipent。
+    （2）在ServiceConnection的onServiceDisconnected中重连远程服务。
+    这两种方法的区别在于：onServiceDisconnected在客户端的UI线程中被回调，而binderDied在客户端的Binder线程池
+    中被回调。也就是说binderDied方法中，我们不能直接访问UI。
+
+7、给远程服务添加权限验证。
+    默认情况下，我们的远程服务任何人都可以连接，但这应该不是我们愿意看到的，所以我们必须给服务加入权限验证功能，
+    权限验证失败则无法调用服务中的方法。在AIDL中进行权限验证，这里介绍两种常用的方法。
+    （1）方法一：我们可以在onBind方法中进行验证，验证不通过就直接返回null，这样验证失败的客户端直接无法绑定服务，
+        至于验证方式可以有多种，比如使用permission验证。
+        使用这种验证方法，我们要先在AndroidMenifest中声明所需要的权限，比如：
+        <permission
+                android:name="com.ubt.ipc.permission.ACCESS_BOOK_SERVICE"
+                android:protectionLevel="normal" />
+        定义了权限以后，就可以在BookManagerService的onBind方法中做权限验证了，如：
+        public IBinder onBind(Intent intent) {
+                int check = checkCallingOrSelfPermission("com.ubt.ipc.permission.ACCESS_BOOK_SERVICE");
+                if (check == PackageManager.PERMISSION_DENIED) {
+                    Log.e(TAG, "onBind，连接权限验证未通过");
+                    return null;
+                }
+                Log.d(TAG, "onBind，连接权限验证成功");
+                return mBinder;
+        }
+        如果我们自己内部的应用想绑定到我们的服务中，只需要在它的AndroidMenifest文件中采用如下方式使用permission即可。
+        <uses-permission android:name="com.ubt.ipc.permission.ACCESS_BOOK_SERVICE" />
+
+    （2）方法二：我们可以在服务端的onTransact方法中进行权限验证，如果验证失败就直接返回false，这样服务端就
+        不会终止执行AIDL中的方法从而达到保护服务端的效果。至于具体的验证方式有很多，可以采用permission验证，
+        具体方式和方法一一样。还可以采用Uid和Pid来做验证，通过getCallingUid和getCallingPid可以拿到客户端
+        所属应用的Uid和Pid，通过这两个参数我们可以做一些验证工作，比如验证包名。如：BookManagerService的mBinder
+        的onTransact方法：
+        public boolean onTransact(int code, Parcel data, Parcel reply, int flags) throws RemoteException {
+            //权限验证方法二：在onTransact方法中，添加权限验证代码
+            int check = checkCallingOrSelfPermission("com.ubt.ipc.permission.ACCESS_BOOK_SERVICE");
+            Log.d(TAG, "check=" + check);
+            if (check == PackageManager.PERMISSION_DENIED) {
+                Log.e(TAG, "onTransact. 权限验证失败");
+                return false;
+            }
+            String packageName = null;
+            String[] packages = getPackageManager().getPackagesForUid(getCallingUid());
+            if (packages != null && packages.length > 0) {
+                packageName = packages[0];
+            }
+            if (TextUtils.isEmpty(packageName) || !packageName.startsWith("com.ubt")) {
+                Log.e(TAG, "onTransact. 权限验证失败,包名必须以com.ubt开头");
+                return false;
+            }
+
+            return super.onTransact(code, data, reply, flags);
+        }
+
+
+
+
+第一类AIDL文件的例子：Book.aidl
+//这个文件的作用是引入了一个序列化对象 Book 供其他的AIDL文件使用
+//注意：Book.aidl与Book.java的包名应当是一样的
+package com.lypeer.ipcclient;
+
+//注意parcelable是小写
+parcelable Book;
+
+
+第二类AIDL文件的例子：BookManager.aidl
+package com.lypeer.ipcclient;
+//导入所需要使用的非默认支持数据类型的包
+import com.lypeer.ipcclient.Book;
+
+interface BookManager {
+
+    //所有的返回值前都不需要加任何东西，不管是什么数据类型
+    List<Book> getBooks();
+    Book getBook();
+    int getBookCount();
+
+    //传参时除了Java基本类型以及String，CharSequence之外的类型
+    //都需要在前面加上定向tag，具体加什么量需而定
+    void setBookPrice(in Book book , int price)
+    void setBookName(in Book book , String name)
+    void addBookIn(in Book book);
+    void addBookOut(out Book book);
+    void addBookInout(inout Book book);
+}
+
+推荐博客：http://blog.csdn.net/luoyanglizi/article/details/52029091
+
+在客户端调用服务端的aidl方法流程，以IBookManager为例:
+1、得到IBookManager接口的实例化对象：
+   IBookManager bookManager = IBookManager.Stub.asInterface(service);
+   看该方法的具体实现可以知道，返回的IBookManager的实例是实现了IBookManager接口的
+   com.ubt.ipc.aidl.IBookManager.Stub.Proxy类的实例对象。
+2、调用IBookManager的方法，实现方法的远程调用。
+    即调用的时com.ubt.ipc.aidl.IBookManager.Stub.Proxy这个类的相关方法，如addBook。
+3、在Stub.Proxy的addBook方法中，调用了IBinder service中的transact方法，该方法就是
+   真正的跨进程调用服务端的方法，这个方法就是在Binder底层实现的。
+   mRemote.transact(Stub.TRANSACTION_addBook, _data, _reply, 0);
+   //调用这个方法之后，客户端将会挂起当前线程，等候服务端执行完相关任务后通知并接收返回的 _reply 数据流。
+
+   mRemote对象就是我们在第一步的时候传进去的service对象：
+   IBookManager.Stub.asInterface(service);
+   即我们在客户端绑定服务端的服务是，服务端返回给我们的IBinder对象。
+总结：客户端调用服务端AIDL接口方法，最终是由服务端的IBinder对象通过调用
+    transact方法来完成的。最终被调用的方法运行在服务端进程。
+
+服务端响应客户端的远程请求流程：
+1、在客户端调用transact方法后，Binder底层就会要请求转发到对应的服务端，并调用
+   IBookManager的内部类Stub的onTransact方法。
+2、在onTransact方法内部，获取客户端传过来的数据，根据方法 ID 执行相应操作。
+3、将传过来的数据取出来，调用本地写好的对应方法。
+4、将需要回传的数据写入 reply 流，传回客户端。
+
+总结：由这两个流程可以看出，
+      transact方法运行在客户端的Binder线程池中
+      onTransact方法运行在服务端的Binder线程池中

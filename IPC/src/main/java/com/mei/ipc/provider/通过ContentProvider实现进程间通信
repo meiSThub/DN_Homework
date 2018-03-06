@@ -1,0 +1,3 @@
+ContentProvider是Android中提供的专门用于不同应用间进行数据共享的方式，从这一点来看，
+它天生就适合进程间通信。
+和Messenger一样，ContentProvider的底层实现同样也是Binder。
