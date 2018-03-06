@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">TestProject</string>
+    <string name="app_menu">展开</string>
+    <string name="app_menu_close">收拢</string>
+</resources>

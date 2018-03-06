@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ubt.com.test">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".ViewDragHelperActivity" />
+        <activity android:name=".ClockActivity" />
+        <activity android:name=".image.ColorMatrixActivity" />
+        <activity android:name=".image.ColorMatrix2Activity" />
+        <activity android:name=".image.PixelHandleActivity" />
+        <activity android:name=".image.ImageChangeMatrixActivity" />
+        <activity android:name=".image.DrawBitmapMeshActivity" />
+        <activity android:name=".image.PathEffectActivity" />
+        <activity android:name=".image.SurfaceViewActivity" />
+        <activity android:name=".animation.LayoutAnimationActivity" />
+        <activity android:name=".animation.CustomAnimationActivity" />
+        <activity android:name=".animation.SVGLinearImgActivity" />
+        <activity android:name=".animation.SVGSunSystemAnimActivity" />
+        <activity android:name=".animation.SVGSearchIconAnimActivity" />
+        <activity android:name=".animation.RotateMenuActivity" />
+        <activity android:name=".systeminfo.PackageManagerActivity" />
+        <activity android:name=".five.x.PaletteActivity" />
+        <activity android:name=".five.x.TintingActivity" />
+        <activity android:name=".five.x.ClippingActivity" />
+        <activity android:name=".five.x.TransitionAnimationActivity" />
+        <activity android:name=".five.x.TransitionDestinationActivity" />
+        <activity android:name=".five.x.BigImageActivity" />
+        <activity android:name=".five.x.RippleActivity" />
+        <activity android:name=".five.x.CircularRevealActivity" />
+        <activity android:name=".five.x.AnimatorSelectorActivity" />
+        <activity android:name=".five.x.ToolBarDrawerLayoutActivity"></activity>
+        <activity android:name=".notification.NotificationActivity">
+
+        </activity>
+        <activity android:name=".project.xpuzzle.XpuzzleMainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

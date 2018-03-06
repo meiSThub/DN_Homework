@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/linear_svg_img">
+    <!--android:drawable:即需要执行动画的静态svg图，即VectorDrawable-->
+
+    <!--对svg图：linear_svg_img的
+          path1属性，执行动画anim_path1
+        对path2属性，执行动画anim_path2
+        可以给group添加动画，也可以给path添加动画
+        -->
+    <target
+        android:name="path1"
+        android:animation="@animator/anim_path1" />
+    <target
+        android:name="path2"
+        android:animation="@animator/anim_path2" />
+</animated-vector>

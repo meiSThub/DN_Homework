@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ubt.com.test.image.ColorMatrixActivity">
+
+    <ImageView
+        android:id="@+id/img"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:src="@drawable/dance_bg" />
+
+    <TextView
+        android:id="@+id/tv_title1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/img"
+        android:layout_marginTop="10dp"
+        android:text="色调"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/tv_title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_title1"
+        android:layout_marginTop="10dp"
+        android:text="饱和度"
+        android:textSize="24sp" />
+
+    <TextView
+        android:id="@+id/tv_title3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_title2"
+        android:layout_marginTop="10dp"
+        android:text="亮度"
+        android:textSize="24sp" />
+
+    <SeekBar
+        android:id="@+id/sb_se_diao"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_below="@+id/img"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/tv_title1" />
+
+    <SeekBar
+        android:id="@+id/sb_bao_he_du"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_below="@+id/sb_se_diao"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/tv_title2" />
+
+    <SeekBar
+        android:id="@+id/sb_liang_du"
+        android:layout_width="match_parent"
+        android:layout_height="20dp"
+        android:layout_below="@+id/sb_bao_he_du"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@+id/tv_title3" />
+</RelativeLayout>

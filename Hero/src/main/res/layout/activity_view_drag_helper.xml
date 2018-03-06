@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ubt.com.test.widget.ViewDragHelperLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <TextView
+        android:id="@+id/tv_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#44efeaea"
+        android:gravity="center"
+        android:text="Main View!" />
+
+    <TextView
+        android:id="@+id/txt_menu"
+        android:layout_width="300dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="-200dp"
+        android:background="#44419451"
+        android:gravity="center_horizontal"
+        android:paddingTop="200dp"
+        android:text="Menu View" />
+
+</ubt.com.test.widget.ViewDragHelperLayout>
