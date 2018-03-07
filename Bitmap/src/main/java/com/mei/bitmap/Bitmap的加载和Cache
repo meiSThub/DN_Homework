@@ -1,0 +1,14 @@
+Bitmap的加载和Cache主要分三个部分介绍：
+    （1）图片加载
+    （2）缓存策略
+    （3）列表的滑动流畅性
+
+1、BitmapFactory类提供了四类方法，用于加载一张图片：
+    （1）decodeFile
+    （2）decodeResource
+    （3）decodeStream
+    （4）decodeByteArray
+decodeFile和decodeResource又间接调用了decodeStream方法，
+这四类方法最终是在Android的底层实现的，对应着BitmapFactory类的几个native方法。
+
+2、BitmapFactory.Options类：
