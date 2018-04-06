@@ -6,7 +6,7 @@
         android:name="android.permission.AUTHENTICATE_ACCOUNTS"
         android:maxSdkVersion="22"/>
     <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
-
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
     <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
 
     <application
@@ -54,8 +54,8 @@
                 <action android:name="android.content.SyncAdapter"/>
             </intent-filter>
             <meta-data
-                android:name=""
-                />
+                android:name="android.content.SyncAdapter"
+                android:resource="@xml/sync_adapter"/>
         </service>
 
         <provider
@@ -64,9 +64,28 @@
 
         <!--JobScheduler保活-->
         <service
-            android:name="com.plum.processkeepalive.jobschduler.MyJobService"
-            android:permission="android.permission.BIND_JOB_SERVICE" />
+            android:name=".jobschduler.MyJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
 
+        <!--双进程守护进程保活-->
+        <service
+            android:name=".twoprocess.LocalService"
+            android:exported="true"/>
+        <service
+            android:name=".twoprocess.LocalService$InnerService"
+            android:exported="true"/>
+
+        <service
+            android:name=".twoprocess.RemoteService"
+            android:exported="true"
+            android:process=":remote"/>
+        <service
+            android:name=".twoprocess.RemoteService$InnerService"
+            android:exported="true"
+            android:process=":remote"/>
+        <service
+            android:name=".twoprocess.MyJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE"/>
     </application>
 
 </manifest>
