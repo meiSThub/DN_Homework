@@ -1,6 +1,7 @@
 package com.mei.design.mode15AbstractFactory.db;
 
-import ubt.com.designmode.mode15AbstractFactory.bean.Department;
+
+import com.mei.design.mode15AbstractFactory.bean.Department;
 
 /**
  * Created by ubt on 2018/1/16.

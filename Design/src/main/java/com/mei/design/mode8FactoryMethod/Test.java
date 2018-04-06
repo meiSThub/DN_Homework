@@ -1,7 +1,8 @@
 package com.mei.design.mode8FactoryMethod;
 
-import ubt.com.designmode.mode8FactoryMethod.factory.Factory;
-import ubt.com.designmode.mode8FactoryMethod.factory.FactoryAdd;
+
+import com.mei.design.mode8FactoryMethod.factory.Factory;
+import com.mei.design.mode8FactoryMethod.factory.FactoryAdd;
 
 /**
  * Created by ubt on 2018/1/11.

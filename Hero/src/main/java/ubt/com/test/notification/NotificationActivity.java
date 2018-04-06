@@ -1,7 +1,6 @@
 package ubt.com.test.notification;
 
 import android.app.Notification;
-import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
@@ -38,7 +37,7 @@ public class NotificationActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification);
 
-        mRadioGroup = findViewById(R.id.visibility_radio_group);
+        mRadioGroup = (RadioGroup) findViewById(R.id.visibility_radio_group);
     }
 
     /**
