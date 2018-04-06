@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sync-adapter
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accountType="com.plum.processkeepalive.account"
+    android:allowParallelSyncs="false"
+    android:contentAuthority="com.plum.processkeepalive.account.provider"
+    android:isAlwaysSyncable="true"
+    android:userVisible="false"
+    />
+
+    <!--contentAuthority 系统在进行账户同步的时候会查找此auth的ContentProvider-->
+    <!--allowParallelSyncs 是否允许多个同步-->
+    <!--isAlwaysSyncable 是否总是同步-->
+    <!---->

@@ -2,6 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.plum.processkeepalive">
 
+    <uses-permission
+        android:name="android.permission.AUTHENTICATE_ACCOUNTS"
+        android:maxSdkVersion="22"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,6 +24,7 @@
             </intent-filter>
         </activity>
 
+        <!--Activity提权-->
         <activity
             android:name=".activitykeepalive.KeepActivity"
             android:excludeFromRecents="true"
@@ -24,8 +32,35 @@
             android:theme="@style/KeepTheme"
             />
 
+        <!--Service提权-->
         <service android:name="com.plum.processkeepalive.service.ForgroundService"/>
         <service android:name="com.plum.processkeepalive.service.ForgroundService$InnerService"/>
+
+        <!--Stick拉活,利用系统启动startservice的时候，返回的sticky属性-->
+        <service android:name="com.plum.processkeepalive.stick.StickService"/>
+
+        <!--账户同步拉活-->
+        <service android:name="com.plum.processkeepalive.account.AuthenticationService">
+            <intent-filter>
+                <action android:name="android.accounts.Authenticator"/>
+            </intent-filter>
+            <meta-data
+                android:name="android.accounts.AccountAuthenticatior"
+                android:resource="@xml/accountauthenticator"
+                />
+        </service>
+        <service android:name=".account.SyncService">
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter"/>
+            </intent-filter>
+            <meta-data
+                android:name=""
+                />
+        </service>
+
+        <provider
+            android:name="com.plum.processkeepalive.account.SyncProvider"
+            android:authorities="com.plum.processkeepalive.account.provider"/>
 
     </application>
 
