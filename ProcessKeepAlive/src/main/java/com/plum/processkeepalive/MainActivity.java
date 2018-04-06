@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.plum.processkeepalive.account.AccountHelper;
 import com.plum.processkeepalive.activitykeepalive.KeepManager;
+import com.plum.processkeepalive.jobschduler.MyJobService;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,6 +26,8 @@ public class MainActivity extends AppCompatActivity {
         AccountHelper.addAccount(this);
         AccountHelper.autoSync();
 
+        //5、JobScheduler 拉活
+        MyJobService.startJob(this);
     }
 
     @Override

@@ -62,6 +62,11 @@
             android:name="com.plum.processkeepalive.account.SyncProvider"
             android:authorities="com.plum.processkeepalive.account.provider"/>
 
+        <!--JobScheduler保活-->
+        <service
+            android:name="com.plum.processkeepalive.jobschduler.MyJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
     </application>
 
 </manifest>
