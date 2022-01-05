@@ -1,7 +1,6 @@
 package com.mei.design.mode15AbstractFactory.factory2;
 
 
-import com.mei.design.mode8FactoryMethod.factory2.PhoneFactory;
 
 /**
  * @author mxb
