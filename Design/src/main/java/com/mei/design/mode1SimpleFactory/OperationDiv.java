@@ -1,6 +1,7 @@
 package com.mei.design.mode1SimpleFactory;
 
-import android.util.Log;
+
+import com.mei.design.Log;
 
 /**
  * Created by ubt on 2018/1/8.
@@ -9,6 +10,7 @@ import android.util.Log;
  */
 
 public class OperationDiv extends Operation {
+
     @Override
     public float operate() {
         if (number2 == 0) {
