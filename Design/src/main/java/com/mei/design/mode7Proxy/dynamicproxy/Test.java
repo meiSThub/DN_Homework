@@ -15,7 +15,7 @@ public class Test {
         //真实角色
         Star star = new Star();
         //代理角色处理器
-        StarHander hander = new StarHander(star);
+        StarHandler hander = new StarHandler(star);
 
         IStar proxy = (IStar) Proxy.newProxyInstance(ClassLoader.getSystemClassLoader(),
                 new Class[]{IStar.class}, hander);

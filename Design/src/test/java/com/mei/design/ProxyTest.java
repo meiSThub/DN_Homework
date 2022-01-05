@@ -2,7 +2,7 @@ package com.mei.design;
 
 
 import com.mei.design.mode7Proxy.dynamicproxy.IStar;
-import com.mei.design.mode7Proxy.dynamicproxy.StarHander;
+import com.mei.design.mode7Proxy.dynamicproxy.StarHandler;
 import com.mei.design.mode7Proxy.star.Star;
 import com.mei.design.mode7Proxy.star.StarProxy;
 
@@ -34,7 +34,7 @@ public class ProxyTest {
         //真实角色
         com.mei.design.mode7Proxy.dynamicproxy.Star star = new com.mei.design.mode7Proxy.dynamicproxy.Star();
         //代理角色处理器
-        StarHander hander = new StarHander(star);
+        StarHandler hander = new StarHandler(star);
 
         com.mei.design.mode7Proxy.dynamicproxy.IStar proxy = (com.mei.design.mode7Proxy.dynamicproxy.IStar)
                 Proxy.newProxyInstance(ClassLoader.getSystemClassLoader(),

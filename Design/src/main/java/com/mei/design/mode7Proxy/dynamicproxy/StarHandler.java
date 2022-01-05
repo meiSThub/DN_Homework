@@ -9,13 +9,13 @@ import java.lang.reflect.Method;
  * @description:代理角色的处理器
  */
 
-public class StarHander implements InvocationHandler {
+public class StarHandler implements InvocationHandler {
 
 
     private Star mStar;
 
     //通过构造器来初始化真实角色
-    public StarHander(Star star) {
+    public StarHandler(Star star) {
         mStar = star;
     }
 
