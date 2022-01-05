@@ -50,15 +50,15 @@ protobuf {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    compile 'com.android.support:appcompat-v7:26.+'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
+    implementation 'com.android.support:appcompat-v7:26.+'
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
 
-    compile 'com.google.protobuf:protobuf-lite:3.0.0'
-    compile 'com.alibaba:fastjson:1.1.67.android'
-    compile 'com.google.code.gson:gson:2.8.2'
+
+    implementation 'com.google.protobuf:protobuf-lite:3.0.0'
+    implementation 'com.alibaba:fastjson:1.1.67.android'
+    implementation 'com.google.code.gson:gson:2.8.2'
 }
