@@ -14,10 +14,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.mei.ipc.aidl.Book;
+import com.mei.ipc.aidl.IBookManager;
+import com.mei.ipc.aidl.IOnNewBookArrivedListener;
 import com.ubt.ipc.R;
-import com.ubt.ipc.aidl.Book;
-import com.ubt.ipc.aidl.IBookManager;
-import com.ubt.ipc.aidl.IOnNewBookArrivedListener;
 
 import java.util.List;
 

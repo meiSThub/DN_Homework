@@ -3,13 +3,13 @@ apply plugin: 'com.google.protobuf'
 
 
 android {
-    compileSdkVersion 26
-    buildToolsVersion "26.0.1"
+    compileSdkVersion 30
+    buildToolsVersion "30.0.1"
 
     defaultConfig {
         applicationId "com.plum.protobuf"
         minSdkVersion 15
-        targetSdkVersion 26
+        targetSdkVersion 30
         versionCode 1
         versionName "1.0"
 
