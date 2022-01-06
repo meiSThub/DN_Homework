@@ -15,13 +15,12 @@ public class StarProxy implements IStar {
     }
 
     @Override
-    public void sing() {
-        mStar.sing();
-    }
-
-    @Override
-    public void accept() {
-        System.out.println("StarProxy 代理接受节目邀请");
-        mStar.accept();
+    public void accept(String invitation) {
+        if (invitation.equals("sing")) {
+            System.out.println("StarProxy 接收邀请：" + invitation);
+            mStar.accept(invitation);
+        } else {
+            System.out.println("StarProxy 拒绝邀请：" + invitation);
+        }
     }
 }

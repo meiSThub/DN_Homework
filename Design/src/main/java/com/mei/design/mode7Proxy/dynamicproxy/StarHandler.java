@@ -32,7 +32,7 @@ public class StarHandler implements InvocationHandler {
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         Object object = null;
         System.out.println("真实角色调用之前的处理。。。。");
-        if ("sing".equals(method.getName())) {
+        if ("accept".equals(method.getName())) {
             object = method.invoke(mStar, args);
         }
         System.out.println("真实角色调用之后的处理.....");

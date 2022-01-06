@@ -11,7 +11,6 @@ public class Test {
     public static void main(String[] args) {
         Star star = new Star();
         StarProxy proxy = new StarProxy(star);
-        proxy.accept();
-        proxy.sing();//真实对象的操作
+        proxy.accept("sing1");
     }
 }

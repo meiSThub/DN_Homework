@@ -9,12 +9,7 @@ package com.mei.design.mode7Proxy.star;
 public interface IStar {
 
     /**
-     * 唱歌
-     */
-    void sing();
-
-    /**
      * 接受节目邀请
      */
-    void accept();
+    void accept(String invitation);
 }

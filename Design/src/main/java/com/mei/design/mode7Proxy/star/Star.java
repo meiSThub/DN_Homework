@@ -9,12 +9,7 @@ package com.mei.design.mode7Proxy.star;
 public class Star implements IStar {
 
     @Override
-    public void sing() {
-        System.out.println("唱歌");
-    }
-
-    @Override
-    public void accept() {
-        System.out.println("接受节目邀请");
+    public void accept(String invitation) {
+        System.out.println("Star接受节目邀请：" + invitation);
     }
 }

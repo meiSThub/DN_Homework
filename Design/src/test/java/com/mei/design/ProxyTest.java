@@ -23,8 +23,7 @@ public class ProxyTest {
     public void test() {
         Star star = new Star();
         StarProxy proxy = new StarProxy(star);
-        proxy.accept();
-        proxy.sing();//真实对象的操作
+        proxy.accept("sing");
 
 
     }
