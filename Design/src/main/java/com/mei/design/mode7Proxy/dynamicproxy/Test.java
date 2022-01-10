@@ -26,7 +26,7 @@ public class Test {
                 new Class[]{IStar.class}, handler);
         System.out.println("proxy="+starProxy.getClass().getName());
         starProxy.accept("sing");
-        writeClassToDisk();
+        // writeClassToDisk();
     }
 
 
