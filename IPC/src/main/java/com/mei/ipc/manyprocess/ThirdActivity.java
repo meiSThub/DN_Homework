@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.ubt.ipc.MainActivity;
+import com.mei.ipc.MainActivity;
 import com.ubt.ipc.R;
 
 public class ThirdActivity extends AppCompatActivity {

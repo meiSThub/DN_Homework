@@ -7,8 +7,6 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.support.annotation.Nullable;
 
-import com.ubt.ipc.Book;
-import com.ubt.ipc.IBookManager;
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;

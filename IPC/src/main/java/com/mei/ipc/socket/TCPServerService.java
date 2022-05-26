@@ -1,12 +1,11 @@
 package com.mei.ipc.socket;
 
+import com.mei.ipc.utils.MyUtils;
+
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.support.annotation.Nullable;
-import android.util.Log;
-
-import com.ubt.ipc.utils.MyUtils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -17,7 +16,6 @@ import java.io.PrintWriter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.Random;
-import java.util.WeakHashMap;
 
 /**
  * Created by ubt on 2018/2/26.

@@ -13,8 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.mei.ipc.utils.MyUtils;
 import com.ubt.ipc.R;
-import com.ubt.ipc.utils.MyUtils;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
