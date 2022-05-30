@@ -6,3 +6,9 @@ java {
     sourceCompatibility = JavaVersion.VERSION_1_7
     targetCompatibility = JavaVersion.VERSION_1_7
 }
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    // 该库可以帮助打印对象的存储结构
+    implementation 'org.openjdk.jol:jol-core:0.10'
+}
