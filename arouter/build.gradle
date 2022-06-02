@@ -1,0 +1,47 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    compileSdkVersion 31
+
+    defaultConfig {
+        applicationId "com.mei.arouter"
+        minSdkVersion 21
+        targetSdkVersion 31
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [AROUTER_MODULE_NAME: project.getName()]
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles(getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro')
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    //api与compiler匹配使用，使用最新版可以保证兼容
+    implementation 'com.alibaba:arouter-api:1.5.0'
+    implementation 'com.google.android.material:material:1.4.0'
+    // 纯java工程使用annotationProcessor，如果是kotlin或者kotlin与java混编，则使用kapt
+    annotationProcessor 'com.alibaba:arouter-compiler:1.2.2'
+    // kapt 'com.alibaba:arouter-compiler:1.2.1'
+}
