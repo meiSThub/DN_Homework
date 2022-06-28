@@ -4,12 +4,13 @@ import android.content.ContentValues;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
 import com.ubt.ipc.Book;
 import com.ubt.ipc.R;
 import com.ubt.ipc.model.User;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 public class ProviderActivity extends AppCompatActivity {
 

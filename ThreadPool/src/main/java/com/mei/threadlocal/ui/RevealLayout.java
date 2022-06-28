@@ -1,5 +1,7 @@
 package com.mei.threadlocal.ui;
 
+import com.mei.threadlocal.R;
+
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
@@ -10,7 +12,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.ubt.threadpool.R;
 
 import java.util.ArrayList;
 

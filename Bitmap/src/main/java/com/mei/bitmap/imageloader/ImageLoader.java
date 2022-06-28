@@ -1,5 +1,9 @@
 package com.mei.bitmap.imageloader;
 
+import com.mei.bitmap.R;
+import com.mei.bitmap.imageloader.disk.DiskLruCache;
+import com.mei.bitmap.utils.MyUtils;
+
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -9,15 +13,10 @@ import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
 import android.os.StatFs;
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 import android.util.LruCache;
 import android.widget.ImageView;
-
-import com.mei.bitmap.R;
-import com.mei.bitmap.imageloader.disk.DiskLruCache;
-import com.mei.bitmap.utils.MyUtils;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -78,7 +77,7 @@ public class ImageLoader {
         private final AtomicInteger mCount = new AtomicInteger(1);
 
         @Override
-        public Thread newThread(@NonNull Runnable r) {
+        public Thread newThread(Runnable r) {
             return new Thread(r, "ImageLoader#" + mCount.getAndIncrement());
         }
     };

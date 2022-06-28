@@ -1,10 +1,12 @@
 package com.mei.test.ui.MaterialDesign.helper;
 
 import android.graphics.Canvas;
-import android.support.v7.widget.RecyclerView;
+
 
 import com.mei.test.ui.MaterialDesign.ItemTouchHelpExtend.ItemTouchHelper;
 import com.mei.test.ui.MaterialDesign.adapter.MainRecyclerAdapter;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 public class MessageItemTouchCallback extends ItemTouchHelper.Callback {
 

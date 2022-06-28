@@ -1,9 +1,9 @@
 package com.mei.test.ui.MaterialDesign;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.mei.test.R;
 import com.mei.test.ui.MaterialDesign.ItemTouchHelpExtend.ItemTouchHelper;

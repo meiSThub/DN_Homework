@@ -1,10 +1,11 @@
 package com.mei.test.autofit.case1;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.mei.test.R;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * 屏幕适配方式一

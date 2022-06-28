@@ -2,7 +2,7 @@ package ubt.com.test.animation;
 
 import android.graphics.drawable.Animatable;
 import android.graphics.drawable.Drawable;
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;

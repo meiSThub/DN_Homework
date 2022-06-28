@@ -1,6 +1,7 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 
 buildscript {
+    apply from:'config.gradle'
     repositories {
         jcenter()
         google()
@@ -15,6 +16,7 @@ buildscript {
 }
 
 allprojects {
+    apply from:'/Users/akulaku/WorkSpace/AndroidDemo/DN_Homework/config.gradle'
     repositories {
         jcenter()
         google()

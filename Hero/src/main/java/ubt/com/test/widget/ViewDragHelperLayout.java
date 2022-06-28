@@ -1,9 +1,10 @@
 package ubt.com.test.widget;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
-import android.support.v4.view.ViewCompat;
-import android.support.v4.widget.ViewDragHelper;
+import androidx.annotation.Nullable;
+import androidx.core.view.ViewCompat;
+import androidx.customview.widget.ViewDragHelper;
+
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;

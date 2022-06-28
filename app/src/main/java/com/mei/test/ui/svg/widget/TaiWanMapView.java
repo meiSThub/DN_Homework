@@ -8,7 +8,7 @@ import android.graphics.RectF;
 import android.graphics.Region;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v4.view.GestureDetectorCompat;
+import androidx.core.view.GestureDetectorCompat;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;

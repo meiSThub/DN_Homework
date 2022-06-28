@@ -2,7 +2,9 @@ package ubt.com.test.widget;
 
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatTextView;
+
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -14,7 +16,7 @@ import android.view.ViewGroup;
  * @description:
  */
 
-public class TextView extends android.support.v7.widget.AppCompatTextView {
+public class TextView extends AppCompatTextView {
     private int mLastX;
     private int mLastY;
 

@@ -1,8 +1,9 @@
 package com.mei.test.ui.MaterialDesign.adapter;
 
 import android.content.Context;
-import android.support.v4.view.MotionEventCompat;
-import android.support.v7.widget.RecyclerView;
+import androidx.core.view.MotionEventCompat;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;

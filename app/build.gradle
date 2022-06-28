@@ -1,13 +1,13 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion '30.0.1'
+    compileSdkVersion android.compileSdkVersion
+    buildToolsVersion android.buildToolsVersion
 
     defaultConfig {
         applicationId "com.mei.test"
-        minSdkVersion 16
-        targetSdkVersion 30
+        minSdkVersion android.minSdkVersion
+        targetSdkVersion android.targetSdkVersion
         versionCode 1
         versionName "1.0"
     }
@@ -17,12 +17,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
+    }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:25.3.1'
-    implementation 'com.android.support:palette-v7:25.3.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    implementation 'com.android.support:recyclerview-v7:25.3.1'
+    implementation deps.androidx.appcompat
+    implementation deps.androidx.palette
+    implementation deps.androidx.constraintlayout
+    implementation deps.androidx.recyclerview
 }

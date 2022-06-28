@@ -16,12 +16,14 @@
 
 package com.mei.test.ui.MaterialDesign.ItemTouchHelpExtend;
 
+import com.mei.test.R;
+
 import android.graphics.Canvas;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.*;
+import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.ItemTouchUIUtil;
+import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.View;
-import android.support.v7.recyclerview.R;
 
 
 /**
@@ -122,7 +124,7 @@ class ItemTouchUIUtilImpl {
         @Override
         public void onDraw(Canvas c, RecyclerView recyclerView, View view,
                 float dX, float dY, int actionState, boolean isCurrentlyActive) {
-            if (actionState != android.support.v7.widget.helper.ItemTouchHelper.ACTION_STATE_DRAG) {
+            if (actionState != ItemTouchHelper.ACTION_STATE_DRAG) {
                 draw(c, recyclerView, view, dX, dY);
             }
         }
@@ -131,7 +133,7 @@ class ItemTouchUIUtilImpl {
         public void onDrawOver(Canvas c, RecyclerView recyclerView,
                 View view, float dX, float dY,
                 int actionState, boolean isCurrentlyActive) {
-            if (actionState == android.support.v7.widget.helper.ItemTouchHelper.ACTION_STATE_DRAG) {
+            if (actionState == ItemTouchHelper.ACTION_STATE_DRAG) {
                 draw(c, recyclerView, view, dX, dY);
             }
         }

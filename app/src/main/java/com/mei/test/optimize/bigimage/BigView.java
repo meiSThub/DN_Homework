@@ -7,7 +7,6 @@ import android.graphics.BitmapRegionDecoder;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Rect;
-import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -16,6 +15,8 @@ import android.widget.Scroller;
 
 import java.io.IOException;
 import java.io.InputStream;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by mei on 2018/1/30.

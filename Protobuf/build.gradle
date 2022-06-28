@@ -1,15 +1,14 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.google.protobuf'
 
-
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.1"
+    compileSdkVersion android.compileSdkVersion
+    buildToolsVersion android.buildToolsVersion
 
     defaultConfig {
         applicationId "com.plum.protobuf"
-        minSdkVersion 15
-        targetSdkVersion 30
+        minSdkVersion android.minSdkVersion
+        targetSdkVersion android.targetSdkVersion
         versionCode 1
         versionName "1.0"
 
@@ -21,6 +20,10 @@ android {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+    compileOptions {
+        sourceCompatibility 1.8
+        targetCompatibility 1.8
     }
 }
 
@@ -43,7 +46,7 @@ protobuf {
                 remove java
             }
             task.plugins {
-                javalite { }
+                javalite {}
             }
         }
     }
@@ -54,11 +57,10 @@ dependencies {
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
-    implementation 'com.android.support:appcompat-v7:26.+'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    implementation deps.androidx.appcompat
+    implementation deps.androidx.constraintlayout
 
-
-    implementation 'com.google.protobuf:protobuf-lite:3.0.0'
-    implementation 'com.alibaba:fastjson:1.1.67.android'
-    implementation 'com.google.code.gson:gson:2.8.2'
+    implementation deps.google.protobuf_lite
+    implementation deps.fastjson
+    implementation deps.google.gson
 }

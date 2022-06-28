@@ -1,12 +1,13 @@
 package com.mei.test.optimize.bigimage;
 
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 
 import com.mei.test.R;
 
 import java.io.IOException;
 import java.io.InputStream;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * 长图加载

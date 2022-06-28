@@ -1,11 +1,12 @@
 package com.mei.test.base;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
 
 import com.mei.test.DemoApplication;
 import com.mei.test.utils.LogUtils;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * Created by mei on 2017/5/19.

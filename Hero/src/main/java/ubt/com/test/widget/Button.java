@@ -6,13 +6,15 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 
+import androidx.appcompat.widget.AppCompatButton;
+
 /**
  * Created by ubt on 2017/12/19.
  *
  * @description:
  */
 
-public class Button extends android.support.v7.widget.AppCompatButton {
+public class Button extends AppCompatButton {
     public Button(Context context) {
         super(context);
     }

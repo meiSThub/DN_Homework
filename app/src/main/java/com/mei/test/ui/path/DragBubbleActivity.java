@@ -1,7 +1,7 @@
 package com.mei.test.ui.path;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
 import android.view.View;
 
 import com.mei.test.R;

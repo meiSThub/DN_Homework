@@ -8,7 +8,6 @@ import android.os.Build;
 import android.util.Log;
 import android.util.LruCache;
 
-import com.mei.test.BuildConfig;
 import com.mei.test.optimize.disk.DiskLruCache;
 
 import java.io.File;

@@ -16,6 +16,8 @@
 
 package com.mei.test.ui.MaterialDesign.ItemTouchHelpExtend;
 
+import com.mei.test.R;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
@@ -23,21 +25,17 @@ import android.content.res.Resources;
 import android.graphics.Canvas;
 import android.graphics.Rect;
 import android.os.Build;
-import android.support.annotation.Nullable;
-import android.support.v4.animation.AnimatorCompatHelper;
-import android.support.v4.animation.AnimatorListenerCompat;
-import android.support.v4.animation.AnimatorUpdateListenerCompat;
-import android.support.v4.animation.ValueAnimatorCompat;
-import android.support.v4.view.GestureDetectorCompat;
-import android.support.v4.view.MotionEventCompat;
-import android.support.v4.view.VelocityTrackerCompat;
-import android.support.v4.view.ViewCompat;
-import android.support.v7.recyclerview.R;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.RecyclerView.OnItemTouchListener;
-import android.support.v7.widget.RecyclerView.ViewHolder;
-import android.support.v7.widget.helper.ItemTouchUIUtil;
+
+import androidx.annotation.Nullable;
+import androidx.core.view.GestureDetectorCompat;
+import androidx.core.view.MotionEventCompat;
+import androidx.core.view.VelocityTrackerCompat;
+import androidx.core.view.ViewCompat;
+import androidx.recyclerview.widget.ItemTouchUIUtil;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView.ViewHolder;
+import androidx.recyclerview.widget.RecyclerView.OnItemTouchListener;
+
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.HapticFeedbackConstants;
@@ -182,8 +180,8 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration
     /**
      * Currently selected view holder
      */
-    ViewHolder mSelected = null;
-    ViewHolder mPreOpened = null;
+    RecyclerView.ViewHolder mSelected = null;
+    RecyclerView.ViewHolder mPreOpened = null;
 
 
     /**
@@ -278,7 +276,7 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration
     VelocityTracker mVelocityTracker;
 
     //re-used list for selecting a swap target
-    private List<ViewHolder> mSwapTargets;
+    private List<RecyclerView.ViewHolder> mSwapTargets;
 
     //re used for for sorting swap targets
     private List<Integer> mDistances;
@@ -307,7 +305,7 @@ public class ItemTouchHelper extends RecyclerView.ItemDecoration
      */
     GestureDetectorCompat mGestureDetector;
 
-    private final OnItemTouchListener mOnItemTouchListener
+    private final RecyclerView.OnItemTouchListener mOnItemTouchListener
             = new OnItemTouchListener() {
         boolean mClick = false;
 

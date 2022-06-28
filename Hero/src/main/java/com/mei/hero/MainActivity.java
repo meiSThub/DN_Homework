@@ -1,6 +1,8 @@
 package com.mei.hero;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
+import ubt.com.test.R;
+
 import android.os.Bundle;
 
 public class MainActivity extends AppCompatActivity {

@@ -1,7 +1,9 @@
 package com.mei.bitmap.widget;
 
 import android.content.Context;
-import android.support.annotation.Nullable;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatImageView;
+
 import android.util.AttributeSet;
 
 /**
@@ -10,7 +12,7 @@ import android.util.AttributeSet;
  * @description:正方形ImageView
  */
 
-public class SquareImageView extends android.support.v7.widget.AppCompatImageView {
+public class SquareImageView extends AppCompatImageView {
     public SquareImageView(Context context) {
         super(context);
     }

@@ -1,9 +1,10 @@
 package com.mei.test.ui.MaterialDesign.helper;
 
-import android.support.v7.widget.RecyclerView.ViewHolder;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 public interface StartDragListener {
 	
-	public void onStartDrag(ViewHolder viewHolder);
+	public void onStartDrag(RecyclerView.ViewHolder viewHolder);
 
 }

@@ -1,9 +1,10 @@
 package com.mei.test.autofit.case3;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.mei.test.R;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 /**
  * 结合方案一和方案二，实现完美布局

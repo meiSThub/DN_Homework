@@ -7,12 +7,12 @@
     android:orientation="vertical"
     tools:context="ubt.com.test.five.x.ToolBarDrawerLayoutActivity">
 
-    <android.support.v7.widget.Toolbar
+    <androidx.appcompat.widget.Toolbar
         android:id="@+id/tool_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <android.support.v4.widget.DrawerLayout
+    <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -42,6 +42,6 @@
                 android:layout_height="match_parent"
                 android:text="菜单界面" />
         </LinearLayout>
-    </android.support.v4.widget.DrawerLayout>
+    </androidx.drawerlayout.widget.DrawerLayout>
 
 </LinearLayout>

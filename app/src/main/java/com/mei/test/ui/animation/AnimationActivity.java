@@ -5,13 +5,14 @@ import android.animation.TypeEvaluator;
 import android.animation.ValueAnimator;
 import android.graphics.PointF;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.animation.AnticipateInterpolator;
 import android.widget.ImageView;
 
 import com.mei.test.R;
 import com.mei.test.base.BaseActivity;
+
+import androidx.annotation.Nullable;
 
 /**
  * Created by mei on 2017/6/9.
